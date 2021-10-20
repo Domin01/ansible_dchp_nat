@@ -1,0 +1,13 @@
+- hosts: all
+  become: true
+  roles:
+   - role: commons
+
+- hosts: servidor_dhcp
+  become: true
+  roles:
+   - role: nat
+   - role: dhcp
+
+
+

@@ -1,0 +1,23 @@
+- name: Instalamos el paquete dhcp
+  apt:
+    pkg: isc-dhcp-server
+
+- name: Copiamos el fichero de configuracion dhcp
+  template: 
+    src: etc/dhcp/dhcpd.conf
+    dest: /etc/dhcp/dhcpd.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - Restart dhcp
+
+- name: "Copiar la configuracion de las tarjetas de red"
+  template:
+    src: etc/default/isc-dhcp-server
+    dest: /etc/default/isc-dhcp-server
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - Restart dhcp

@@ -1,0 +1,8 @@
+all:
+  children:
+    servidor_dhcp:
+      hosts:
+        nodo1:
+          ansible_ssh_host: 172.22.4.49
+          ansible_ssh_user: servidor
+          ansible_ssh_private_key_file: ~/.ssh/id_rsa

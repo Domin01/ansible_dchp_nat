@@ -1,0 +1,22 @@
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# Configuracion /etc/network/interfaces ansible
+auto ens3
+iface ens3 inet dhcp
+
+auto {{interfaz1}}
+iface {{interfaz1}} inet static
+	address {{ip_1}}
+	netmask {{mask_1}}
+
+up iptables -t nat -A POSTROUTING -s {{red1}} -o ens3 -j MASQUERADE
+
+auto {{interfaz2}}
+iface {{interfaz2}} inet static
+	address {{ip_2}}
+	netmask {{mask_2}}
+
+up iptables -t nat -A POSTROUTING -s {{red2}} -o ens3 -j MASQUERADE
+
